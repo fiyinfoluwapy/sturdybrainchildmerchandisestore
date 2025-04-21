@@ -2,6 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/navbar";
 import Herosection from './components/herosection';
+import FeaturesSection from './components/about';
+import { FeaturedProducts } from './components/featuredproducts';
+
 
 
 const geistSans = Geist({
@@ -27,6 +30,9 @@ export default function RootLayout({ children }) {
       >
         <Navbar />
         <Herosection />
+        <FeaturesSection />
+        <FeaturedProducts />
+       
         {children}
       </body>
     </html>
