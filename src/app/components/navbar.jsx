@@ -30,7 +30,7 @@ export const Navbar = () => {
     }
   }, []);
 
-  const navLinks = ['home', 'shop', 'about', 'contact'];
+  const navLinks = ['Home', 'Shop', 'About', 'Contact'];
 
   // Update cartItems in localStorage whenever it changes
   useEffect(() => {
@@ -64,7 +64,7 @@ export const Navbar = () => {
                   priority
                 />
                 <div className="flex flex-col leading-none">
-                  <h1 className="text-xl font-extrabold tracking-wider">
+                  <h1 className="text-xl font-extrabold tracking-wider sm:text-1xl">
                     <span
                       className={`${
                         isScrolled ? 'text-black' : 'text-[#D91111]'

@@ -1,17 +1,50 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheckIcon, StarIcon, ZapIcon, UsersIcon } from 'lucide-react';
 
-// Motion Variants
+// Color palette (excluding Lava Red)
+const colorPalette = [
+  '#BCB2B1', // Black Shadows
+  '#5B6366', // Black Coral
+  '#0F1110', // Chinese Black
+  '#4B0800', // Bulgarian Rose
+  '#9C1205', // Rufous
+];
+
+// Features Data
+const features = [
+  {
+    title: 'Authentic Clothing',
+    description:
+      "Crafted for the streets, built with purpose. Sturdy Brainchild isn't just merch — it's a statement...",
+    icon: ShieldCheckIcon,
+  },
+  {
+    title: 'Premium Material',
+    description:
+      "We don't play when it comes to quality. Only the best threads make the cut...",
+    icon: StarIcon,
+  },
+  {
+    title: 'Limited Drops',
+    description:
+      "You don't wear what everyone else wears. Our collections are exclusive...",
+    icon: ZapIcon,
+  },
+  {
+    title: 'Community-Driven Vibes',
+    description:
+      "By bikers. For creatives. Built for the bold. This brand was born in Lagos...",
+    icon: UsersIcon,
+  },
+];
+
+// Animation Variants
 const containerVariants = {
   hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+  show: { transition: { staggerChildren: 0.15 } },
 };
 
 const cardVariants = {
@@ -20,32 +53,23 @@ const cardVariants = {
 };
 
 const FeaturesSection = () => {
-  const features = [
-    {
-      title: 'Authentic Clothing',
-      description:
-        "Crafted for the streets, built with purpose. Sturdy Brainchild isn't just merch — it's a statement. Every piece is designed with originality and realness, made for people who move different. No fakes, no fluff. Just pure street-bred authenticity.",
-      icon: ShieldCheckIcon,
-    },
-    {
-      title: 'Premium Material',
-      description:
-        "We don't play when it comes to quality. Only the best threads make the cut. Our fabric is thick, soft, breathable, and built to last. From hoodies to gear, everything feels good, fits better, and looks 🔥.",
-      icon: StarIcon,
-    },
-    {
-      title: 'Limited Drops',
-      description:
-        "You don't wear what everyone else wears. Our collections are exclusive and never overproduced. That means when you cop from us, you're getting rare pieces that stand out. No restocks, no reruns — when it's gone, it's gone.",
-      icon: ZapIcon,
-    },
-    {
-      title: 'Community-Driven Vibes',
-      description:
-        "By bikers. For creatives. Built for the bold. This brand was born in Lagos, built by a real one who lives and breathes the culture. Whether you're into bikes, streetwear, or bold visuals — this is your tribe. We ride together, we grow together.",
-      icon: UsersIcon,
-    },
-  ];
+  const [bgColors, setBgColors] = useState(
+    features.map((_, i) => colorPalette[i % colorPalette.length])
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgColors((prevColors) =>
+        prevColors.map((_, i) => {
+          const currentIndex = colorPalette.indexOf(prevColors[i]);
+          const nextIndex = (currentIndex + 1) % colorPalette.length;
+          return colorPalette[nextIndex];
+        })
+      );
+    }, 5000); // every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="w-full bg-[#0F1110] py-24">
@@ -59,22 +83,43 @@ const FeaturesSection = () => {
         >
           {features.map((feature, index) => {
             const Icon = feature.icon;
+            const bgColor = bgColors[index];
+            const isGrey = bgColor === '#BCB2B1' || bgColor === '#5B6366';
+
             return (
               <motion.div
                 key={index}
-                className="group relative backdrop-blur-md bg-[#4B0800]/20 p-6 rounded-2xl shadow-md hover:shadow-[#D91111]/40 transition-all duration-300 hover:-translate-y-2 hover:scale-105 ease-in-out"
+                className={`group relative p-6 rounded-2xl shadow-md hover:shadow-[#D91111]/40 transition-all duration-500 hover:-translate-y-2 hover:scale-105 ease-in-out`}
+                style={{
+                  backgroundColor: bgColor,
+                  transition: 'background-color 1s ease-in-out',
+                }}
                 variants={cardVariants}
-              >  
-
-              
+              >
                 <div className="relative z-10">
-                  <div className="h-12 w-12 rounded-xl bg-[#D91111]/10 flex items-center justify-center mb-6 group-hover:bg-[#D91111]/30 transition-colors duration-300">
-                    <Icon className="h-6 w-6 text-[#D91111]" />
+                  <div
+                    className={`h-12 w-12 rounded-xl ${
+                      isGrey ? 'bg-white/20' : 'bg-[#D91111]/10'
+                    } flex items-center justify-center mb-6 group-hover:bg-[#D91111]/30 transition-colors duration-300`}
+                  >
+                    <Icon
+                      className={`h-6 w-6 ${
+                        isGrey ? 'text-white' : 'text-[#D91111]'
+                      }`}
+                    />
                   </div>
-                  <h3 className="text-white text-lg font-extrabold mb-3 tracking-tight">
+                  <h3
+                    className={`text-lg font-extrabold mb-3 tracking-tight ${
+                      isGrey ? 'text-black' : 'text-white'
+                    }`}
+                  >
                     {feature.title}
                   </h3>
-                  <p className="text-[#BCB2B1] text-sm leading-relaxed font-medium">
+                  <p
+                    className={`text-sm leading-relaxed font-medium ${
+                      isGrey ? 'text-black' : 'text-[#BCB2B1]'
+                    }`}
+                  >
                     {feature.description}
                   </p>
                 </div>

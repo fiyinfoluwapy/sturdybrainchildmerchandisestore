@@ -4,8 +4,7 @@ import { Navbar } from "./components/navbar";
 import Herosection from './components/herosection';
 import FeaturesSection from './components/about';
 import { FeaturedProducts } from './components/featuredproducts';
-
-
+import { Shop } from "./components/shop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +31,10 @@ export default function RootLayout({ children }) {
         <Herosection />
         <FeaturesSection />
         <FeaturedProducts />
-       
+
+        {/* Add the Shop component here */}
+        <Shop /> 
+
         {children}
       </body>
     </html>

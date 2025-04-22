@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ArrowRightIcon, EyeIcon } from 'lucide-react';
+import { ArrowRightIcon } from 'lucide-react';
+import ProductCard from './ProductCard';  // Import the ProductCard component
 
 export const FeaturedProducts = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -47,7 +48,7 @@ export const FeaturedProducts = () => {
 
   const handleProductClick = (productId) => {
     console.log(`Navigating to product ${productId}`);
-    // navigation logic here (e.g., router.push(`/product/${productId}`))
+    // Add your navigation logic here (e.g., router.push(`/product/${productId}`))
   };
 
   useEffect(() => {
@@ -73,7 +74,6 @@ export const FeaturedProducts = () => {
           <div>
             <h2 className="text-3xl font-bold text-white mb-2 relative">
               Featured Gear
-              {/* Always-visible underline */}
               <span
                 className={`absolute left-0 -bottom-1 h-1 w-full bg-[#D91111] rounded-sm transition-all duration-500 ${
                   isVisible ? 'transform translate-y-0' : 'transform translate-y-2'
@@ -91,48 +91,7 @@ export const FeaturedProducts = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product) => (
-            <div
-              key={product.id}
-              className="group relative cursor-pointer"
-              onClick={() => handleProductClick(product.id)}
-            >
-              {/* Product Image */}
-              <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-[#4B0800]">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
-                />
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="bg-[#D91111] hover:bg-[#9C1205] text-white px-6 py-3 rounded-md flex items-center space-x-2 transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <EyeIcon className="w-4 h-4" />
-                    <span>Quick View</span>
-                  </button>
-                </div>
-                {/* Category Tag */}
-                <div className="absolute top-4 left-4 bg-[#0F1110]/80 px-3 py-1 rounded-full">
-                  <span className="text-[#BCB2B1] text-sm">{product.category}</span>
-                </div>
-                {/* Stock Status */}
-                {!product.inStock && (
-                  <div className="absolute top-4 right-4 bg-[#D91111] px-3 py-1 rounded-full">
-                    <span className="text-white text-sm">Sold Out</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Product Info */}
-              <div className="mt-4 space-y-2">
-                <h3 className="text-white font-medium group-hover:text-[#D91111] transition-colors duration-300">
-                  {product.name}
-                </h3>
-                <div className="flex justify-between items-center">
-                  <span className="text-[#BCB2B1]">₦{product.price.toLocaleString()}</span>
-                  <div className="h-px w-12 bg-[#D91111]"></div>
-                </div>
-              </div>
-            </div>
+            <ProductCard key={product.id} product={product} onClick={handleProductClick} />
           ))}
         </div>
 
@@ -147,4 +106,3 @@ export const FeaturedProducts = () => {
     </section>
   );
 };
-
