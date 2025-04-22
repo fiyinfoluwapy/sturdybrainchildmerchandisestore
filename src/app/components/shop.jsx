@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ProductCard from './productcard';
 import ProductFilters from './productfilters';
 import { ChevronDownIcon, FilterIcon } from 'lucide-react';
@@ -11,6 +11,25 @@ export const Shop = () => {
   const [selectedSize, setSelectedSize] = useState('all');
   const [selectedColor, setSelectedColor] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
+  const [isInView, setIsInView] = useState(false);
+
+  const shopRef = useRef(null);
+
+  // Intersection Observer for the "Shop" header animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+    if (shopRef.current) {
+      observer.observe(shopRef.current);
+    }
+    return () => {
+      if (shopRef.current) observer.unobserve(shopRef.current);
+    };
+  }, []);
 
   const products = [
     {
@@ -116,7 +135,15 @@ export const Shop = () => {
         {/* Products Grid */}
         <div className="flex-1">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-extrabold text-[#D91111]">Shop</h1>
+            <h1
+              ref={shopRef}
+              className={`text-3xl font-extrabold text-[#D91111] relative ${isInView ? 'underline animation-slide' : ''}`}
+            >
+              Shop
+              <span
+                className={`absolute bottom-0 left-0 w-full h-1 bg-[#D91111] transition-all transform ${isInView ? 'scale-x-100' : 'scale-x-0'}`}
+              ></span>
+            </h1>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
