@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProductCard from './productcard';
 import ProductFilters from './productfilters';
+import products from '../data/products';
 import { ChevronDownIcon, FilterIcon } from 'lucide-react';
 
 export const Shop = () => {
@@ -31,29 +32,7 @@ export const Shop = () => {
     };
   }, []);
 
-  const products = [
-    {
-      id: '1',
-      name: 'Daredevil Leather Jacket',
-      price: 299.99,
-      category: 'jackets',
-      image: 'https://...',
-      sizes: ['M', 'L', 'XL'],
-      colors: ['Black', 'Red'],
-      stock: 5,
-    },
-    {
-      id: '2',
-      name: 'Urban Combat T-Shirt',
-      price: 49.99,
-      category: 'tees',
-      image: 'https://...',
-      sizes: ['S', 'M'],
-      colors: ['White'],
-      stock: 0,
-    },
-    // Add more products here...
-  ];
+  
 
   const filteredProducts = products
     .filter((product) => selectedCategory === 'all' || product.category === selectedCategory)

@@ -1,10 +1,13 @@
+// Mark this file as a client component
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { Navbar } from "./components/navbar";
+import { usePathname } from "next/navigation"; // Import usePathname
+import "./globals.css";
 import Herosection from './components/herosection';
 import FeaturesSection from './components/about';
 import { FeaturedProducts } from './components/featuredproducts';
-import { Shop } from "./components/shop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,26 +19,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Brainchild Merch",
-  description: "Boldly designed for the fearless",
-};
-
 export default function RootLayout({ children }) {
+  const pathname = usePathname(); // Get the current route
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Always show the Navbar */}
         <Navbar />
-        <Herosection />
-        <FeaturesSection />
-        <FeaturedProducts />
 
-        {/* Add the Shop component here */}
-        <Shop /> 
+        {/* Only show these components if we're not on the /shop page */}
+        {pathname !== "/shop" && (
+          <>
+            <Herosection />
+            <FeaturesSection />
+            <FeaturedProducts />
+          </>
+        )}
 
-        {children}
+        {/* Render the page's content (children) */}
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -30,7 +30,12 @@ export const Navbar = () => {
     }
   }, []);
 
-  const navLinks = ['Home', 'Shop', 'About', 'Contact'];
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Shop', path: '/shop' },
+    { name: 'About', path: '#about' },
+    { name: 'Contact', path: '#contact' },
+  ];
 
   // Update cartItems in localStorage whenever it changes
   useEffect(() => {
@@ -88,15 +93,15 @@ export const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {navLinks.map(({ name, path }) => (
               <Link
-                key={link}
-                href={`#${link}`}
+                key={name}
+                href={path} // Link to the corresponding path
                 className={`uppercase font-extrabold transition duration-300 ${
                   isScrolled ? 'text-white' : 'text-[#BCB2B1]'
                 } hover:text-white`}
               >
-                {link}
+                {name}
               </Link>
             ))}
           </div>
@@ -132,13 +137,13 @@ export const Navbar = () => {
         }`}
       >
         <div className="px-4 pt-2 pb-4 space-y-2 bg-[#0F1110]">
-          {navLinks.map((link) => (
+          {navLinks.map(({ name, path }) => (
             <Link
-              key={link}
-              href={`#${link}`}
+              key={name}
+              href={path} // Adjust path to link correctly
               className="block text-[#BCB2B1] hover:text-white font-extrabold transition duration-300"
             >
-              {link}
+              {name}
             </Link>
           ))}
         </div>
