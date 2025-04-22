@@ -42,7 +42,7 @@ export const FeaturedProducts = () => {
         <div className="flex justify-between items-center mb-12">
           <div>
             <h2 className="text-3xl font-bold text-white mb-2 relative">
-              Featured Gear
+              <span className='text-[#D91111]'>Adventure</span> With Sturdy !
               <span
                 className={`absolute left-0 -bottom-1 h-1 w-full bg-[#D91111] rounded-sm transition-all duration-500 ${isVisible ? 'translate-y-0' : 'translate-y-2'}`}
               ></span>
