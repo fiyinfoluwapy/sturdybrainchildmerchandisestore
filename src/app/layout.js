@@ -3,11 +3,11 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "./components/navbar";
-import { usePathname } from "next/navigation"; // Import usePathname
+import { usePathname } from "next/navigation"; // Next.js App Router hook
 import "./globals.css";
-import Herosection from './components/herosection';
-import FeaturesSection from './components/about';
-import { FeaturedProducts } from './components/featuredproducts';
+import Herosection from "./components/herosection";
+import FeaturesSection from "./components/about";
+import { FeaturedProducts } from "./components/featuredproducts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,16 +22,17 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }) {
   const pathname = usePathname(); // Get the current route
 
+  // Only show landing sections on the homepage (not on /shop or /product/[id])
+  const isLandingPage = !pathname.startsWith("/shop") && !pathname.startsWith("/product/");
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* Always show the Navbar */}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* Navbar is shown on every page */}
         <Navbar />
 
-        {/* Only show these components if we're not on the /shop page */}
-        {pathname !== "/shop" && (
+        {/* Conditionally show landing page sections only when not in /shop or /product */}
+        {isLandingPage && (
           <>
             <Herosection />
             <FeaturesSection />
@@ -39,7 +40,7 @@ export default function RootLayout({ children }) {
           </>
         )}
 
-        {/* Render the page's content (children) */}
+        {/* Main content of the current page */}
         <main>{children}</main>
       </body>
     </html>
