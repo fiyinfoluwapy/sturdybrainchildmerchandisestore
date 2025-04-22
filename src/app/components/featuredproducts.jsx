@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ArrowRightIcon } from 'lucide-react';
-import ProductCard from './ProductCard';  // Import the ProductCard component
+import ProductCard from './productcard';  // Import the ProductCard component
 
 export const FeaturedProducts = () => {
   const [isVisible, setIsVisible] = useState(false);
