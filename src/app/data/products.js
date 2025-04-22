@@ -5,7 +5,7 @@ const products = [
       id: '1',
       name: 'Daredevil Leather Jacket',
       price: 29999,
-      category: 'jackets',
+      category: 'jackets', 
       image: 'https://i.pinimg.com/736x/27/be/b2/27beb27b4bf6497ab20e36a971235b7f.jpg',
       sizes: ['M', 'L', 'XL'
         ],
@@ -21,7 +21,7 @@ const products = [
       image: 'https://i.pinimg.com/736x/97/b5/e4/97b5e4407f4ff1fa79dd164b6ab710a4.jpg',
       sizes: ['S', 'M', 'L'
         ],
-      colors: ['White'
+      colors: ['White', 'Black', 'Grey'
         ],
       inStock: true,
     },
@@ -41,7 +41,7 @@ const products = [
       id: '4',
       name: 'Tactical Cargo Pants',
       price: 12999,
-      category: 'pants',
+      category: ['pants', 'Tee'],
       image: 'https://i.pinimg.com/736x/43/19/36/431936df6fc0c68d7eba9b5c949e015a.jpg',
       sizes: ['S', 'M', 'L', 'XL'
         ],
@@ -53,7 +53,7 @@ const products = [
       id: '5',
       name: 'Sturdy Gym Sleeveless',
       price: 6999,
-      category: 'gym',
+      category: ['gym', 'Tee'],
       image: 'https://i.pinimg.com/736x/43/b9/ea/43b9ea7d49714d3f5abe8575992a4ed8.jpg',
       sizes: ['S', 'M', 'L'
         ],

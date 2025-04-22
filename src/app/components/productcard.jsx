@@ -1,13 +1,21 @@
-// components/ProductCard.jsx
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { EyeIcon } from 'lucide-react';
 
-const ProductCard = ({ product, onClick }) => {
+const ProductCard = ({ product }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/product/${product.id}`);
+  };
+
   return (
     <div
       key={product.id}
       className="group relative cursor-pointer"
-      onClick={() => onClick(product.id)}
+      onClick={handleClick}
     >
       {/* Product Image */}
       <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-[#4B0800]">
@@ -28,12 +36,11 @@ const ProductCard = ({ product, onClick }) => {
           <span className="text-[#BCB2B1] text-sm">{product.category}</span>
         </div>
         {/* Stock Status */}
-        {product.inStock === false && (
+        {!product.inStock && (
           <div className="absolute top-4 right-4 bg-[#D91111] px-3 py-1 rounded-full">
             <span className="text-white text-sm">Sold Out</span>
           </div>
         )}
-
       </div>
 
       {/* Product Info */}
