@@ -3,7 +3,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "./components/navbar";
 import "./globals.css";
-import { CartProvider } from "./context/cartcontext"; // make sure casing matches your file!
+import { CartProvider } from './context/cartcontext.jsx';
+
+
+
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
