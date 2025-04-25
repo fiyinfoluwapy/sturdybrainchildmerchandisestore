@@ -10,7 +10,7 @@ export const CartItem = ({ item }) => {
   const handleQuantityChange = (amount) => {
     const newQuantity = quantity + amount;
     if (newQuantity > 0) {
-      updateQuantity(id, newQuantity); // Update quantity in cart
+      updateQuantity(id, newQuantity);
     }
   };
 
