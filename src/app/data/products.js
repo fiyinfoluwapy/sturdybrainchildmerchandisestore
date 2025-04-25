@@ -7,11 +7,12 @@ const products = [
       price: 29999,
       category: 'jackets', 
       image: 'https://i.pinimg.com/736x/27/be/b2/27beb27b4bf6497ab20e36a971235b7f.jpg',
-      sizes: ['M', 'L', 'XL'
+      sizes: ['M', 'L', 'XL',
         ],
       colors: ['Black', 'Red'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
     },
     {
       id: '2',
@@ -24,6 +25,8 @@ const products = [
       colors: ['White', 'Black', 'Grey'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '3',
@@ -36,6 +39,8 @@ const products = [
       colors: ['Black', 'Gray'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '4',
@@ -48,6 +53,8 @@ const products = [
       colors: ['Green', 'Black'
         ],
       inStock: false,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '5',
@@ -60,6 +67,8 @@ const products = [
       colors: ['Gray', 'Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '6',
@@ -72,6 +81,8 @@ const products = [
       colors: ['Black', 'Red'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '7',
@@ -84,6 +95,8 @@ const products = [
       colors: ['Black', 'White'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '8',
@@ -96,6 +109,8 @@ const products = [
       colors: ['Black', 'Red'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '9',
@@ -108,6 +123,8 @@ const products = [
       colors: ['Gray', 'Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '10',
@@ -120,6 +137,8 @@ const products = [
       colors: ['Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '11',
@@ -132,6 +151,8 @@ const products = [
       colors: ['Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '12',
@@ -143,6 +164,8 @@ const products = [
       colors: ['Red', 'Black', 'Blue', 'Grey'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '13',
@@ -154,6 +177,8 @@ const products = [
       colors: ['Black', 'Gray'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '14',
@@ -166,6 +191,8 @@ const products = [
       colors: ['White', 'Black', 'Grey'
         ],
       inStock: false,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '15',
@@ -178,6 +205,8 @@ const products = [
       colors: ['Red'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '16',
@@ -190,6 +219,8 @@ const products = [
       colors: ['Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '17',
@@ -202,6 +233,8 @@ const products = [
       colors: ['Black', 'Gray'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '18',
@@ -214,6 +247,8 @@ const products = [
       colors: ['Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '19',
@@ -226,6 +261,8 @@ const products = [
       colors: ['Red', 'Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '20',
@@ -238,6 +275,8 @@ const products = [
       colors: ['White', 'Gray'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '21',
@@ -250,6 +289,8 @@ const products = [
       colors: ['Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '22',
@@ -262,6 +303,8 @@ const products = [
       colors: ['Black', 'Gray'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '23',
@@ -274,6 +317,8 @@ const products = [
       colors: ['Black', 'Grey'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '24',
@@ -286,6 +331,8 @@ const products = [
       colors: ['Black'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
     {
       id: '25',
@@ -298,6 +345,8 @@ const products = [
       colors: ['Red', 'Black', 'Grey'
         ],
       inStock: true,
+      description: "Crafted with precision and designed for comfort, this piece is perfect for everyday wear and bold statements alike.",
+
     },
 ];
   

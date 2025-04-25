@@ -4,47 +4,48 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/cartcontext'; // ✅ updated this line
 
 const ProductDetails = ({ product, allProducts }) => {
   const router = useRouter();
+  const { addToCart } = useCart(); // ✅ updated this line
+
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [showModal, setShowModal] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
-  // Normalize category field to always be an array
   const normalizeCategories = (category) => {
     return Array.isArray(category) ? category : [category];
   };
 
-  // Ensure allProducts is available before proceeding
   if (!Array.isArray(allProducts)) {
-    return <p>Error: Product data is not available.</p>; // Show an error message or fallback UI
+    return <p>Error: Product data is not available.</p>;
   }
 
-  // Debugging relatedProducts
   useEffect(() => {
-    console.log('Current Product:', product);
-
-    // Normalize categories of the current product
     const currentProductCategories = normalizeCategories(product.category);
-
-    // Find related products based on shared category
     const related = allProducts.filter((item) => {
-      if (item.id === product.id) return false; // Exclude current product
-      const itemCategories = normalizeCategories(item.category); // Normalize category for each product
-      return itemCategories.some(cat => currentProductCategories.includes(cat)); // Check if categories match
+      if (item.id === product.id) return false;
+      const itemCategories = normalizeCategories(item.category);
+      return itemCategories.some((cat) => currentProductCategories.includes(cat));
     });
     setRelatedProducts(related);
   }, [product, allProducts]);
 
-  // Handler for opening and closing the image modal
-  const handleImageClick = () => {
-    setShowModal(true);
-  };
+  const handleImageClick = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleAddToCart = () => {
+    const productToAdd = {
+      ...product,
+      selectedSize,
+      selectedColor,
+      quantity: 1,
+    };
+
+    addToCart(productToAdd);
+    router.push('/cart');
   };
 
   return (
@@ -65,6 +66,7 @@ const ProductDetails = ({ product, allProducts }) => {
         <div className="flex flex-col space-y-6">
           <h1 className="text-3xl font-bold tracking-wide">{product.name}</h1>
           <p className="text-2xl text-[#D91111] font-semibold">₦{product.price.toLocaleString()}</p>
+          <p className="text-[#BCB2B1] text-sm">{product.description}</p>
 
           {/* Size Options */}
           <div>
@@ -108,7 +110,10 @@ const ProductDetails = ({ product, allProducts }) => {
 
           {/* Action Buttons */}
           <div className="flex flex-col space-y-4 mt-6 w-full">
-            <button className="w-full bg-[#D91111] hover:bg-[#9C1205] text-white font-bold py-3 rounded-full transition flex items-center justify-center gap-2">
+            <button
+              onClick={handleAddToCart}
+              className="w-full bg-[#D91111] hover:bg-[#9C1205] text-white font-bold py-3 rounded-full transition flex items-center justify-center gap-2"
+            >
               <ShoppingCart size={20} /> Add to Cart
             </button>
 
@@ -122,7 +127,7 @@ const ProductDetails = ({ product, allProducts }) => {
         </div>
       </div>
 
-      {/* Modal for Image Preview */}
+      {/* Modal */}
       {showModal && (
         <div
           className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
@@ -146,7 +151,7 @@ const ProductDetails = ({ product, allProducts }) => {
         </div>
       )}
 
-      {/* Related Products Section */}
+      {/* Related Products */}
       {relatedProducts.length > 0 ? (
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-4">Related Products</h2>
@@ -155,7 +160,7 @@ const ProductDetails = ({ product, allProducts }) => {
               <div
                 key={relatedProduct.id}
                 className="border rounded-lg p-4 hover:bg-[#0F1110] cursor-pointer"
-                onClick={() => router.push(`/product/${relatedProduct.id}`)} // Dynamic route for product detail
+                onClick={() => router.push(`/product/${relatedProduct.id}`)}
               >
                 <Image
                   src={relatedProduct.image}
