@@ -28,7 +28,7 @@ export const CartPage = () => {
             </div>
           </div>
           <div className="lg:col-span-1">
-            <OrderSummary /> {/* Use the OrderSummary component */}
+            <OrderSummary /> {/*  OrderSummary component */}
           </div>
         </div>
       </div>

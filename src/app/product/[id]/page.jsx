@@ -4,7 +4,7 @@ import ProductDetails from '../../components/productdetails';
 import { notFound } from 'next/navigation';
 
 export default function ProductPage({ params }) {
-  const { id } = params; // No need to await params, it's already available
+  const { id } = params; 
 
   // Find the product with the corresponding ID
   const product = products.find((p) => p.id === id);

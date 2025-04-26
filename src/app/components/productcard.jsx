@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => {
         </h3>
         <div className="flex justify-between items-center">
           <span className="text-[#BCB2B1]">₦{product.price.toLocaleString()}</span>
-          <div className="h-px w-12 bg-[#D91111]"></div>
+          <div className="h-px w-12 bg-[#0033ff]"></div>
         </div>
       </div>
     </div>

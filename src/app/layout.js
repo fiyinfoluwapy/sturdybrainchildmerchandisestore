@@ -2,6 +2,7 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "./components/navbar";
+import Footer from "./components/footer";
 import "./globals.css";
 import { CartProvider } from './context/cartcontext.jsx';
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <Navbar />
           <main>{children}</main>
+          <Footer />
         </CartProvider>
       </body>
     </html>
