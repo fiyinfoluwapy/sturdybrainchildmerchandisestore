@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '../context/cartcontext'; // ✅ updated this line
+import { useCart } from '../context/cartcontext';
 
 const ProductDetails = ({ product, allProducts }) => {
   const router = useRouter();
-  const { addToCart } = useCart(); // ✅ updated this line
+  const { addToCart } = useCart();
 
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
@@ -76,11 +76,10 @@ const ProductDetails = ({ product, allProducts }) => {
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`px-4 py-2 border-2 rounded-full font-bold ${
-                    selectedSize === size
+                  className={`px-4 py-2 border-2 rounded-full font-bold ${selectedSize === size
                       ? 'border-[#D91111] text-white'
                       : 'border-gray-500 text-gray-400'
-                  }`}
+                    }`}
                 >
                   {size}
                 </button>
@@ -96,11 +95,10 @@ const ProductDetails = ({ product, allProducts }) => {
                 <button
                   key={color}
                   onClick={() => setSelectedColor(color)}
-                  className={`px-4 py-2 border-2 rounded-full font-bold ${
-                    selectedColor === color
+                  className={`px-4 py-2 border-2 rounded-full font-bold ${selectedColor === color
                       ? 'border-[#D91111] text-white'
                       : 'border-gray-500 text-gray-400'
-                  }`}
+                    }`}
                 >
                   {color}
                 </button>
@@ -152,32 +150,28 @@ const ProductDetails = ({ product, allProducts }) => {
       )}
 
       {/* Related Products */}
-      {relatedProducts.length > 0 ? (
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">Related Products</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {relatedProducts.map((relatedProduct) => (
-              <div
-                key={relatedProduct.id}
-                className="border rounded-lg p-4 hover:bg-[#0F1110] cursor-pointer"
-                onClick={() => router.push(`/product/${relatedProduct.id}`)}
-              >
-                <Image
-                  src={relatedProduct.image}
-                  alt={relatedProduct.name}
-                  width={300}
-                  height={300}
-                  className="w-full h-full object-cover object-center rounded-md"
-                />
-                <h3 className="text-lg font-semibold text-white mt-4">{relatedProduct.name}</h3>
-                <p className="text-[#D91111]">₦{relatedProduct.price.toLocaleString()}</p>
-              </div>
-            ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+        {relatedProducts.map((relatedProduct) => (
+          <div
+            key={relatedProduct.id}
+            className="bg-[#0F1110] border border-[#5B6366] rounded-lg p-4 hover:bg-[#1a1c1b] cursor-pointer flex flex-col items-center"
+            onClick={() => router.push(`/product/${relatedProduct.id}`)}
+          >
+            <Image
+              src={relatedProduct.image}
+              alt={relatedProduct.name}
+              width={250}
+              height={250}
+              className="w-full h-auto object-cover object-center rounded-md"
+            />
+            <div className="mt-4 text-center">
+              <h3 className="text-lg font-semibold text-white">{relatedProduct.name}</h3>
+              <p className="text-[#D91111]">₦{relatedProduct.price.toLocaleString()}</p>
+            </div>
           </div>
-        </div>
-      ) : (
-        <p className="text-center text-gray-500">No related products available.</p>
-      )}
+        ))}
+      </div>
+
     </>
   );
 };

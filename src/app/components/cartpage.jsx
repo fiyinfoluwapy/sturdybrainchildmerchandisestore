@@ -1,7 +1,7 @@
 // cartpage.jsx
 import React from 'react';
 import { CartItem } from './cartitem';
-import { useCart } from '../context/cartcontext'; // ✅ using the custom hook
+import { useCart } from '../context/cartcontext'; //  using the custom hook
 import { OrderSummary } from './order-summary';  // Import OrderSummary component
 
 export const CartPage = () => {

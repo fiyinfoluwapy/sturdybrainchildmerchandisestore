@@ -1,6 +1,6 @@
 // src/app/context/cartcontext.jsx
 
-"use client"; // <-- This is the important directive
+"use client"; 
 
 import React, { createContext, useContext, useState } from 'react';
 
