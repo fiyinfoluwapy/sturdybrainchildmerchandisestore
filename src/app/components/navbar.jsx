@@ -96,7 +96,7 @@ export const Navbar = () => {
             {navLinks.map(({ name, path }) => (
               <Link
                 key={name}
-                href={path} // Link to the corresponding path
+                href={path} 
                 className={`uppercase font-extrabold transition duration-300 ${
                   isScrolled ? 'text-white' : 'text-[#BCB2B1]'
                 } hover:text-white`}
@@ -140,7 +140,7 @@ export const Navbar = () => {
           {navLinks.map(({ name, path }) => (
             <Link
               key={name}
-              href={path} // Adjust path to link correctly
+              href={path} 
               className="block text-[#BCB2B1] hover:text-white font-extrabold transition duration-300"
             >
               {name}

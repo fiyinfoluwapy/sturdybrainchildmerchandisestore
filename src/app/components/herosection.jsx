@@ -1,7 +1,23 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, Flame } from 'lucide-react';
 
 const Herosection = () => {
+    const router = useRouter();
+
+    const handleShopClick = () => {
+        router.push('/shop');
+    };
+
+    const handleAboutClick = () => {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
             {/* Background Image */}
@@ -13,10 +29,8 @@ const Herosection = () => {
                 />
             </div>
 
-            {/* Overlay with brand colors */}
+            {/* Overlays */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#4B0800]/90 to-[#0F1110]/90"></div>
-
-            {/* Diagonal accent */}
             <div className="absolute inset-0 bg-[#D91111]/10 transform -skew-y-6 origin-top-left"></div>
 
             {/* Content */}
@@ -41,13 +55,19 @@ const Herosection = () => {
 
                     <div className="flex flex-wrap gap-4">
                         {/* Shop Collection Button */}
-                        <button className="px-8 py-4 bg-[#D91111] hover:bg-[#9C1205] text-white font-medium rounded-md transition-colors duration-300 flex items-center space-x-2 group">
+                        <button 
+                            onClick={handleShopClick}
+                            className="px-8 py-4 bg-[#D91111] hover:bg-[#9C1205] text-white font-medium rounded-md transition-colors duration-300 flex items-center space-x-2 group"
+                        >
                             <span>Shop Collection</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                         </button>
 
                         {/* About Us Button */}
-                        <button className="px-8 py-4 border-2 border-[#5B6366] hover:bg-[#D91111] hover:border-[#D91111] text-white font-medium rounded-md transition-colors duration-300 transform hover:scale-105 active:scale-95">
+                        <button 
+                            onClick={handleAboutClick}
+                            className="px-8 py-4 border-2 border-[#5B6366] hover:bg-[#D91111] hover:border-[#D91111] text-white font-medium rounded-md transition-colors duration-300 transform hover:scale-105 active:scale-95"
+                        >
                             About Us
                         </button>
                     </div>
@@ -58,4 +78,3 @@ const Herosection = () => {
 };
 
 export default Herosection;
-

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheckIcon, StarIcon, ZapIcon, UsersIcon } from 'lucide-react';
 
-// Color palette (excluding Lava Red)
 const colorPalette = [
   '#BCB2B1', // Black Shadows
   '#5B6366', // Black Coral
@@ -52,6 +51,11 @@ const cardVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+};
+
 const FeaturesSection = () => {
   const [bgColors, setBgColors] = useState(
     features.map((_, i) => colorPalette[i % colorPalette.length])
@@ -66,13 +70,20 @@ const FeaturesSection = () => {
           return colorPalette[nextIndex];
         })
       );
-    }, 5000); // every 5 seconds
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="w-full bg-[#0F1110] py-24">
+    <motion.section
+      id="about"
+      className="w-full bg-[#0F1110] py-24"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -129,7 +140,7 @@ const FeaturesSection = () => {
           })}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
