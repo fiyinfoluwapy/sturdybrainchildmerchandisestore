@@ -5,11 +5,15 @@ import { ShoppingBagIcon, MenuIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion'; // Importing framer-motion for animation
+import { useCart } from '../context/cartcontext'; // Importing cart context
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [cartItems, setCartItems] = useState(0); // Default cart count set to 0 initially
+  
+  // Access cartItems from context
+  const { cartItems } = useCart(); 
+  const cartCount = cartItems.length; // Get the count of items in the cart
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -22,27 +26,12 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    // Persist cart items using localStorage
-    const savedCartItems = localStorage.getItem('cartItems');
-    if (savedCartItems) {
-      setCartItems(parseInt(savedCartItems, 10)); // Parse to integer
-    }
-  }, []);
-
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop' },
     { name: 'About', path: '#about' },
     { name: 'Contact', path: '#contact' },
   ];
-
-  // Update cartItems in localStorage whenever it changes
-  useEffect(() => {
-    if (cartItems > 0) {
-      localStorage.setItem('cartItems', cartItems);
-    }
-  }, [cartItems]);
 
   return (
     <nav
@@ -80,9 +69,7 @@ export const Navbar = () => {
                     <span className="text-white">BRAINCHILD</span>
                   </h1>
                   <span
-                    className={`text-xs tracking-wide ${
-                      isScrolled ? 'text-white' : 'text-[#5B6366]'
-                    } -mt-1`}
+                    className={`text-xs tracking-wide ${isScrolled ? 'text-white' : 'text-[#5B6366]'} -mt-1`}
                   >
                     URBAN STREETWEAR
                   </span>
@@ -108,14 +95,16 @@ export const Navbar = () => {
 
           {/* Cart + Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <div className="relative">
-              <ShoppingBagIcon className="h-6 w-6 text-white hover:text-black transition duration-300" />
-              {cartItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-white text-[#D91111] text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItems}
-                </span>
-              )}
-            </div>
+            <Link href="/cart" passHref>
+              <div className="relative cursor-pointer">
+                <ShoppingBagIcon className="h-6 w-6 text-white hover:text-black transition duration-300" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-white text-[#D91111] text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </div>
+            </Link>
             <button
               onClick={toggleMenu}
               className="md:hidden text-white focus:outline-none"

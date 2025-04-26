@@ -20,7 +20,7 @@ export const CartPage = () => {
             <div className="bg-[#0F1110] border border-[#5B6366] rounded-lg divide-y divide-[#5B6366]">
               {cartItems.length > 0 ? (
                 cartItems.map((item) => (
-                  <CartItem key={item.id} item={item} /> // Just pass item, no removeItem
+                  <CartItem key={item.id} item={item} /> 
                 ))
               ) : (
                 <p className="p-6 text-[#BCB2B1]">Your cart is empty 🛒</p>
